@@ -1,13 +1,90 @@
+{{ 'custom.js'  | asset_url | script_tag     }}
+{{ 'custom.css' | asset_url | stylesheet_tag }}
 <div class='about-us'>
-
-
+  <div class="row">
+    <div class='column'>
+      <div id="innercol">
+        <h1>{{ section.settings.headline }}</h1>
+        <p>{{ section.settings.text-box }}</p>
+        <button id="emailbutton" class="about-button" type="button" onclick="open_email_dialog(this.id)">Follow Us Now</button>
+      </div>
+    </div>
+    <div class='column'>
+      <img src="{{ section.settings.about-us-image | img_url: 'medium'}}"/>
+    </div>
+  </div>
+  <div class='quote'>
+    <p>{{ section.settings.quote}}</p>
+    <img class="quote-img" src="{{section.settings.quote-image | img_url: 'small'}}" />
+    <p id="quote-author">{{section.settings.quote-author }}</p>
+  </div>
+  <div class="row" id> 
+    <div class='column' >
+    <p id="get-started" > Ready to get started? </p>
+    </div>
+    <div class="column" id="our-products"> 
+      <button class="about-button" onclick="location.href='{{section.settings.button-link}}'"> Our Products</button>
+    </div>
+  </div>
 </div>
 
 {% schema %}
   {
     "name": "About us",
     "settings": [
-      
+      {
+        "id": "headline",
+        "type": "text",
+        "label": "Heading",
+        "default": "About Us"
+      },
+      {
+        "id": "text-box",
+        "type": "textarea",
+        "label": "Company Text",
+        "default": "Lorem Ipsum Blabla"
+      },
+      {
+        "id": "quote",
+        "type": "text",
+        "label": "Quote",
+        "default": "\"Lorem Ipsum Blabla\""
+      },
+      {
+        "type": "image_picker",
+        "id": "about-us-image",
+        "label": "About us image"
+      },
+      {
+        "type": "image_picker",
+        "id": "quote-image",
+        "label": "Quote image"
+      },
+      {
+        "type": "text",
+        "id": "quote-author",
+        "label": "Quote Author",
+        "default" : "Nicolas Cage, Master of Disguises"
+      },
+      {
+        "type": "text",
+        "id": "button-link",
+        "label": "Button Link",
+        "default" : "https://grovia-challenge.myshopify.com/collections/all"
+      },
+      {
+        "type": "text",
+        "id": "button-text",
+        "label": "Button Text",
+        "default": "Our Products"
+      }
+
     ]
   }
 {% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
